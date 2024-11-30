@@ -1,0 +1,16 @@
+{% extends 'todo_list/base.html' %}
+
+{% block title %}
+  Create New ToDo
+{% endblock title %}
+
+{% block body %}
+  <h3>ToDos:</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add">
+  </form>
+  {% include 'todo_list/components/todo_items_list.html'%}
+{% endblock body %}
+

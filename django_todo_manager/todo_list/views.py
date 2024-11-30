@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from .models import ToDoItem
+from django.urls import reverse
 # Create your views here.
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from .forms import ToDoItemForm
 
 def index_view(request: HttpRequest) -> HttpResponse:
     todo_items = ToDoItem.objects.order_by("id").all()
@@ -24,3 +26,7 @@ class ToDoListDoneView(ListView):
     model = ToDoItem
     queryset = ToDoItem.objects.filter(done=True).all()
 
+class ToDoItemCreateView(CreateView):
+    model = ToDoItem
+    form_class = ToDoItemForm
+    # fields = ('title', 'description')
