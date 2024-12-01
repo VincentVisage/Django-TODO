@@ -3,7 +3,7 @@ from django import forms
 from .models import ToDoItem
 
 
-class ToDoItemForm(forms.ModelForm):
+class ToDoItemCreateForm(forms.ModelForm):
 
     class Meta:
         model = ToDoItem
@@ -18,3 +18,12 @@ class ToDoItemForm(forms.ModelForm):
         help_texts = {
             "description": "Some useful help text."
         }
+
+
+class ToDoItemUpdateForm(forms.ModelForm):
+    class Meta(ToDoItemCreateForm.Meta):
+        fields = (
+            "title",
+            "description",
+            "done",
+        )
